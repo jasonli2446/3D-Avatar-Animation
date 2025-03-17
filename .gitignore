@@ -1,0 +1,22 @@
+# Ignore everything
+/*
+
+# Except for these folders
+!/Assets/
+
+# Ignore specific files that might be in Assets
+/Assets/Scenes
+/Assets/Settings
+/Assets/TutorialInfo
+
+# Ignore specific file types
+*.meta
+*.fbx
+*.mat
+*.inputactions
+*.exr
+*.tga
+
+# Include .gitignore and README
+!.gitignore
+!README.md
