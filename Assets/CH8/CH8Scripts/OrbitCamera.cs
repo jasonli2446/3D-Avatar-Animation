@@ -7,13 +7,13 @@ public class OrbitCamera : MonoBehaviour
 	[SerializeField] private Transform target;
 
 	public float rotSpeed = 1.5f;
-	public float minVertical = -30.0f;  // Changed from -45.0f to prevent looking too far down
-	public float maxVertical = 60.0f;   // Increased to allow looking further up
+	public float minVertical = -30.0f;
+	public float maxVertical = 60.0f;
 
 	[Header("Ground Detection")]
 	public bool preventGroundClipping = true;
-	public float groundOffset = 0.2f;   // How far above ground to keep camera
-	public LayerMask groundLayers;      // Set this to your ground layers
+	public float groundOffset = 0.2f;
+	public LayerMask groundLayers;
 
 	private float _rotY;
 	private float _rotX;
@@ -47,7 +47,7 @@ public class OrbitCamera : MonoBehaviour
 
 		// Update rotation angles
 		_rotY += mouseX;
-		_rotX -= mouseY; // Inverted to match expected mouse behavior
+		_rotX += mouseY;
 
 		// Clamp vertical rotation
 		_rotX = Mathf.Clamp(_rotX, minVertical, maxVertical);
