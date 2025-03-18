@@ -1,30 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ReactiveTarget : MonoBehaviour {
+public class ReactiveTarget : MonoBehaviour
+{
 
 	Animator anim;
 
-	void Start(){
+	void Start()
+	{
 
 		anim = GetComponent<Animator>();
 	}
 
 
-	public void ReactToHit() {
+	public void ReactToHit()
+	{
 		WanderingAI behavior = GetComponent<WanderingAI>();
-		if (behavior != null) {
+		if (behavior != null)
+		{
 			behavior.SetAlive(false);
 		}
 		StartCoroutine(Die());
 	}
 
-	private IEnumerator Die() {
+	private IEnumerator Die()
+	{
 		//this.transform.Rotate(-75, 0, 0);
 		anim.SetInteger("zombieToState", 2);
-		
+
 		yield return new WaitForSeconds(2.5f);
-		
+
 		Destroy(this.gameObject);
 	}
 }

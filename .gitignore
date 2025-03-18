@@ -8,6 +8,7 @@
 /Assets/Scenes
 /Assets/Settings
 /Assets/TutorialInfo
+/Assets/TextMesh Pro
 
 # Ignore specific file types
 *.meta
