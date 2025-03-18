@@ -9,10 +9,13 @@ public class RayShooter : MonoBehaviour
 	private Camera _camera;
 
 	public Texture reticle;
+	private Animator _playerAnimator;
 
 	void Start()
 	{
 		_camera = GetComponent<Camera>();
+		_playerAnimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
 
 		//Cursor.lockState = CursorLockMode.Locked;
 		//Cursor.visible = false;
@@ -31,6 +34,12 @@ public class RayShooter : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
 		{
+			// Trigger shooting animation
+			if (_playerAnimator != null)
+			{
+				_playerAnimator.SetTrigger("Shooting");
+			}
+
 			Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
 			Ray ray = _camera.ScreenPointToRay(point);
 			RaycastHit hit;

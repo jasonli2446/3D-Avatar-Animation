@@ -24,7 +24,7 @@ public class RelativeMovement : MonoBehaviour
 	private ControllerColliderHit _contact;
 
 	private CharacterController _charController;
-	// private Animator _animator;
+	private Animator _animator;
 
 	// Use this for initialization
 	void Start()
@@ -32,7 +32,7 @@ public class RelativeMovement : MonoBehaviour
 		_vertSpeed = minFall;
 
 		_charController = GetComponent<CharacterController>();
-		// 	_animator = GetComponent<Animator>();
+		_animator = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -62,7 +62,7 @@ public class RelativeMovement : MonoBehaviour
 			transform.rotation = Quaternion.Lerp(transform.rotation,
 																					 direction, rotSpeed * Time.deltaTime);
 		}
-		// 	_animator.SetFloat("Speed", movement.sqrMagnitude);
+		_animator.SetFloat("Speed", movement.sqrMagnitude);
 
 		// raycast down to address steep slopes and dropoff edge
 		bool hitGround = false;
@@ -84,7 +84,7 @@ public class RelativeMovement : MonoBehaviour
 			else
 			{
 				_vertSpeed = minFall;
-				// 	_animator.SetBool("Jumping", false);
+				_animator.SetBool("Jumping", false);
 			}
 		}
 		else
@@ -96,7 +96,7 @@ public class RelativeMovement : MonoBehaviour
 			}
 			if (_contact != null)
 			{ // not right at level start
-				// 	_animator.SetBool("Jumping", true);
+				_animator.SetBool("Jumping", true);
 			}
 
 			// workaround for standing on dropoff edge

@@ -9,6 +9,8 @@ public class OrbitCamera : MonoBehaviour
 	public float rotSpeed = 1.5f;
 	public float minVertical = -30.0f;
 	public float maxVertical = 60.0f;
+	public float rightShoulderOffset = 1.0f;
+	public float lookTargetOffset = -2.0f;
 
 	[Header("Ground Detection")]
 	public bool preventGroundClipping = true;
@@ -58,6 +60,15 @@ public class OrbitCamera : MonoBehaviour
 		// Position the camera based on the offset and rotation
 		Vector3 desiredPosition = target.position - (rotation * _offset);
 
+		// Add right offset for over-the-shoulder view
+		Vector3 rightOffset = rotation * Vector3.right * rightShoulderOffset;
+		desiredPosition += rightOffset;
+
+		// Create a look target that's also offset to make player appear on left side
+		Vector3 lookDirection = rotation * Vector3.forward;
+		Vector3 lookOffset = rotation * Vector3.right * lookTargetOffset;
+		Vector3 lookTarget = target.position + new Vector3(0, 1.0f, 0) + lookOffset;
+
 		// Prevent ground clipping if enabled
 		if (preventGroundClipping)
 		{
@@ -75,6 +86,6 @@ public class OrbitCamera : MonoBehaviour
 		}
 
 		transform.position = desiredPosition;
-		transform.LookAt(target);
+		transform.LookAt(lookTarget);
 	}
 }
