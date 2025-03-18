@@ -14,11 +14,7 @@ public class RayShooter : MonoBehaviour
 	void Start()
 	{
 		_camera = GetComponent<Camera>();
-		_playerAnimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
-
-
-		//Cursor.lockState = CursorLockMode.Locked;
-		//Cursor.visible = false;
+		_playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
 	}
 
 	void OnGUI()

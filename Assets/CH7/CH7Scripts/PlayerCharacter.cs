@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerCharacter : MonoBehaviour {
+public class PlayerCharacter : MonoBehaviour
+{
 	private int _health;
 
-	void Start() {
+	void Start()
+	{
 		_health = 5;
 	}
 
-	public void Hurt(int damage) {
+	public void Hurt(int damage)
+	{
 		_health -= damage;
 		Debug.Log("Health: " + _health);
+		GetComponent<Animator>().SetTrigger("Hurt");
 	}
 }
